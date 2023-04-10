@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}toutes les COMMANDES{% endblock %}
+
+{% block content %}
+
+            
+            <div class="col-md-10 justify-content-center text-center">
+                <h4>liste des commandes </h4>
+                {% if commandes is not empty %}
+                {% for commande in commandes %}
+                 <div class="row justify-content-center" >
+                    <div class="col card mb-3 " style="max-width: 800px;">
+                        <div class="row g-0">
+                            <div class="col-md-6 text-center">
+                              
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body text-center">
+                               {% for commandeDetail in commande.commandeDetails %}
+                               <h5>voiture : {{ commandeDetail.voiture.modele }}</h5>
+                               <h5>prix : {{ commandeDetail.voiture.prix }}</h5>
+                               <h5>date : {{ commande.dateDeCommande|date('Y-m-d')  }}</h5>
+                               
+                               
+                               <h5>user id : {{ commande.user.id }}</h5>
+                               <h5>user id : {{ commande.user.nom }}  {{ commande.user.prenom }}</h5>
+                               <br>
+
+                               {% endfor %}
+                                {# {{ dump(commandes)}}   #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                
+              
+                
+                    {% endfor %}
+          
+                {% else %} 
+                     <div class= "alert alert-danger mt-5"><p>aucune commande le moment ! revenez plus tard</p> </div >
+               {% endif %}         
+            </div>
+        </div>
+
+{% endblock %}

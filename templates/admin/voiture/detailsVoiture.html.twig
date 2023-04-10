@@ -1,0 +1,22 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    details de la voiture {{voiture.id }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 col-lg-8 col-sm-12">
+            <h1> Detail de la voiture n° {{ voiture.id }}</h1>
+            <h5><strong>titre : </strong> {{ voiture.modele }}</h5>
+            <h5><strong>couleur : </strong> {{ voiture.couleur }}</h5>
+            <h5><strong>nombre de portes : </strong> {{ voiture.nbPortes }}</h5>
+            <h5><strong>prix : </strong> {{ voiture.prix }}</h5>
+            <h5><strong>stock : </strong> {{ voiture.stock }}</h5>
+            <h5><strong>marque : </strong> {{ voiture.marque.nom }}</h5>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-12">
+            <img class="img-fluid" src="{{ asset('photos/voiture/' ~ voiture.photos) }}" alt="{{ voiture.modele }}">
+        </div>
+    </div>
+{% endblock %}

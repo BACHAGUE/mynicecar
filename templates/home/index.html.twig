@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+   <h1>Bonjour</h1>
+    <h1>Bienvenue chez MYNICECAR votre fourniseur AUTO</h1>
+    <h1>voici nos nouveaux Vehicules : </h1>
+    
+    </div>
+    <div class="justify-content-center text-center">
+
+    
+    {% for voiture in voitures %} 
+    <div class="row justify-content-center">
+        <div class="col card mb-3 " style="max-width: 800px;">
+            <div class="row g-0">
+                <div class="col-md-6 text-center">                   
+                    <img src="{{asset('photos/voiture/'~ voiture.photos)}}" class="img-fluid rounded-start" alt="{{voiture.photos}}">
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">
+                            <a class="text-decoration-none text-success" href=""> {{voiture.modele}} </a>
+                        </h4>
+                        <h5>couleur : {{voiture.couleur}}</h5>
+                        <h5>nbPortes : {{voiture.nbPortes}}</h5>
+                        <h5>il en reste {{voiture.stock}} stock</h5>
+                        <h5>prix :
+                            <strong>{{voiture.prix}}€</strong>
+                             
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ {% endfor %}
+
+</div>
+            
+{% endblock %}

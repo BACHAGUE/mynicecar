@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}toutes les voitures{% endblock %}
+
+{% block content %}
+<div class="row mt-5">
+            
+            <div class="col-md-2 justify-content-center pt-4">
+                <ul class="list-group">
+                    <a class="text-decoration-none" href="{{path('app_voiture')}}"> <li class="list-group-item btn btn-primary text-center">All</li> </a>  
+                    {% for marque in marques %}
+                    <a class="text-decoration-none" href="{{path('app_voitures_marque', {slug: marque.slug})}}"> <li class="list-group-item btn btn-primary text-center">{{marque.nom}}</li> </a>  
+                  {% endfor %}         
+                </ul>
+            </div>
+            
+            <div class="col-md-10 justify-content-center text-center">
+                <h4>liste des voitures </h4>
+                {% if voitures is not empty %}
+                 {% for voiture in voitures %}
+                    
+                
+                <div class="row justify-content-center" >
+                    <div class="col card mb-3 " style="max-width: 800px;">
+                        <div class="row g-0">
+                            <div class="col-md-6 text-center">
+                                <img src="{{asset('photos/voiture/'~ voiture.photos)}}" class="img-fluid rounded-start"
+                                    alt="{{voiture.modele}}">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title"><a href="{{ path('app_voiture_show' , {id: voiture.id})}}">{{ voiture.modele}} </a></h4>
+                                    <h6>marque : {{ voiture.marque.nom}} </h6>
+                                    <h5>couleur :{{ voiture.couleur}}</h5>
+                                    <h5>taille :{{ voiture.nbPortes}}</h5>
+                                    <h5>il en reste {{ voiture.stock}}</h5>
+                                    <h5>prix : <strong>{{ voiture.prix}}</strong></h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    {% endfor %}
+
+                {% else %} 
+                     <div class= "alert alert-danger mt-5"><p>aucune voiture dans cette marque pour le moment ! revenez plus tard</p> </div >
+               {% endif %}         
+            </div>
+        </div>
+
+{% endblock %}
